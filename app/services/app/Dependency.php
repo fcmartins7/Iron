@@ -49,8 +49,6 @@ class Dependency extends Di {
         $this->set('response', new Response());
 
         $this->set('translator', new TranslatorService($this));
-        
-        $this->set('session', new SessionService($this));
     }
 
 }
