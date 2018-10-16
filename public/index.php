@@ -1,15 +1,17 @@
 <?php
+define('APP_PATH', realpath('..') . '/');
 
 use Phalcon\Mvc\Application,
-    Iron\Services\App\Loader as Loader,
-    Iron\Services\App\Dependency as Di;
+    Iron\Services\App\Dependency as Di,
+    Iron\Config\Configuration;
+
+require_once APP_PATH . 'app/libraries/autoload.php';
 
 try {
-    new Loader();
+    Configuration::start();
     $application = new Application(new Di());
-    $response = $application->handle();
 
-    echo $response->getContent();
+    echo $application->handle()->getContent();
 } catch (Exception $e) {
     echo $e->getMessage();
 }

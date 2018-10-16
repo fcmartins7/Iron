@@ -1,6 +1,15 @@
 <?php
-
+/*
+ * Copyright 2018, 
+ * Francisco Martins    <francisco_jcm_7@hotmail.com>,
+ * José Pereira         <fofurna@gmail.com>
+ * Bruno Barbosa        <bmanecas@hotmail.com>  
+ * All Rights Reserved.
+ */
 namespace app\services\session;
+
+use Phalcon\Db\Adapter\Pdo\Mysql;
+use Phalcon\Session\Adapter\Files as Session;
 
 /**
  * Application dependency injector.
@@ -8,16 +17,8 @@ namespace app\services\session;
  * @author      Francisco Martins   <francisco_jcm_7@hotmail.com>
  * @version     000.000.001         @10/09/2018
  */
-use Phalcon\Db\Adapter\Pdo\Mysql;
-use Phalcon\Session\Adapter\Files as Session;
-
-/**
- * Description of SessionService
- *
- * @author FCMartins
- * @version 1.00.00
- */
-class SessionService extends Session {
+class SessionService extends Session
+{
 
     private $_di;
     private $MySql;
@@ -27,7 +28,8 @@ class SessionService extends Session {
      * 
      * @return string - Nome do ficheiro
      */
-    private function buildCssFileHash() {
+    private function buildCssFileHash()
+    {
         if (!$this->has('css_file')) {
             $files = glob('css/build/*');
             foreach ($files as $file) {
@@ -38,7 +40,7 @@ class SessionService extends Session {
             $_hashFileName = md5(date('l jS \of F Y h:i:s A')) . '.css';
             copy('css/style.css', 'css/build/' . $_hashFileName);
             return '/css/build/' . $_hashFileName;
-        }else{
+        } else {
             return $this->get('css_file');
         }
     }
@@ -48,7 +50,8 @@ class SessionService extends Session {
      * 
      * @return string-  Nome do ficheiro
      */
-    private function buildJsFileHash() {
+    private function buildJsFileHash()
+    {
         if (!$this->has('js_file')) {
             $files = glob('js/build/*');
             foreach ($files as $file) {
@@ -59,7 +62,7 @@ class SessionService extends Session {
             $_hashFileName = md5(date('l jS \of F Y h:i:s A')) . '.js';
             copy('js/scripts.js', 'js/build/' . $_hashFileName);
             return '/js/build/' . $_hashFileName;
-        }else{
+        } else {
             return $this->get('js_file');
         }
     }
@@ -78,7 +81,8 @@ class SessionService extends Session {
      * 
      * @param type $_config
      */
-    function __construct($di, $_config) {
+    function __construct($di, $_config)
+    {
         parent::__construct();
         $this->start();
         $this->MySql = new Mysql($_config);
@@ -87,16 +91,19 @@ class SessionService extends Session {
         $this->set('js_file', $this->buildJsFileHash());
     }
 
-    public function getJs() {
+    public function getJs()
+    {
         return $this->get('js_file');
     }
 
-    public function getCss() {
+    public function getCss()
+    {
         return $this->get('css_file');
     }
 
     /** @return \app\helpers\SecurityHelper Class de encryptação */
-    private function _crypt() {
+    private function _crypt()
+    {
         return $this->_di->get('crypt');
     }
 
@@ -108,7 +115,8 @@ class SessionService extends Session {
      * 
      * @return boolean Retorna com o resultado da operação.
      */
-    function doLogin($_user, $_password) {
+    function doLogin($_user, $_password)
+    {
         try {
             /* Query a ser executada á base de dados */
             $Query = "SELECT * FROM users WHERE username = '" . $_user . "'"; // . " AND password = " . $_password;
@@ -129,25 +137,29 @@ class SessionService extends Session {
         }
     }
 
-    private function sessionStart($id, $_username) {
+    private function sessionStart($id, $_username)
+    {
         $this->set('id', $id);
         $this->set('username', $_username);
     }
 
-    public function hasSessionStarted() {
+    public function hasSessionStarted()
+    {
         return $this->has('username');
     }
 
-    public function endSession() {
+    public function endSession()
+    {
         $this->destroy();
     }
 
-    public function getId() {
+    public function getId()
+    {
         return $this->get('username');
     }
 
-    public function incre($var) {
+    public function incre($var)
+    {
         return $var++;
     }
-
 }
