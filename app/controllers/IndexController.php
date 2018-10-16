@@ -19,4 +19,8 @@ class IndexController extends BaseController
     {
         $this->view->text = "ola";
     }
+    
+    public function registerAction(){
+        
+    }
 }

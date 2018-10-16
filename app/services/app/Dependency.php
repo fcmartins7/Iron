@@ -1,4 +1,5 @@
 <?php
+
 /*
  * Copyright 2018, 
  * Francisco Martins    <francisco_jcm_7@hotmail.com>,
@@ -6,6 +7,7 @@
  * Bruno Barbosa        <bmanecas@hotmail.com>  
  * All Rights Reserved.
  */
+
 namespace Iron\Services\App;
 
 use Phalcon\Di,
@@ -15,7 +17,8 @@ use Phalcon\Di,
     Phalcon\Mvc\View,
     Phalcon\Mvc\Dispatcher,
     Phalcon\Mvc\View\Engine\Volt,
-    Iron\Services\Translation\TranslatorService;
+    Iron\Services\Translation\TranslatorService,
+    Iron\Services\Session\SessionService;
 
 /**
  * Application dependency injector.
@@ -23,12 +26,11 @@ use Phalcon\Di,
  * @author      Francisco Martins <francisco_jcm_7@hotmail.com>
  * @version     000.000.001 (10/09/2018)
  */
-class Dependency extends Di
-{
+class Dependency extends Di {
 
-    function __construct()
-    {
+    function __construct() {
         parent::__construct();
+
         $this->set('view', function () {
             $view = new View();
             $view->setViewsDir(APP_PATH . 'app/views');
@@ -37,10 +39,18 @@ class Dependency extends Di
             ));
             return $view;
         });
+
         $this->set('request', new Request());
+
         $this->set('router', new Router());
+
         $this->set('dispatcher', new Dispatcher());
+
         $this->set('response', new Response());
+
         $this->set('translator', new TranslatorService($this));
+        
+        $this->set('session', new SessionService($this));
     }
+
 }

@@ -1,6 +1,6 @@
 {
     "require": {
-        "php": "^7.1.0",
+        "php": "^7.2",
         "ext-phalcon": "*"
     },
     "config": {
@@ -12,7 +12,8 @@
             "Iron\\Services\\": "app/services",
             "Iron\\Services\\App\\": "app/services/app",
             "Iron\\Config\\": "app/config",
-            "Iron\\Services\\Translation\\": "app/services/translation"
+            "Iron\\Services\\Translation\\": "app/services/translation",
+            "Iron\\Service\\Session\\": "app/services/session"
         }
     }
 }

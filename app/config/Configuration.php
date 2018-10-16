@@ -1,4 +1,5 @@
 <?php
+
 namespace Iron\Config;
 
 use Phalcon\Config;
@@ -9,11 +10,9 @@ use Phalcon\Config;
  * @author FCMartins
  * @version 1.00.00
  */
-class Configuration
-{
+class Configuration {
 
-    private static function readConfig()
-    {
+    private static function readConfig() {
         return new Config([
             'application' => [
                 'controllersDir' => 'app/controllers',
@@ -27,8 +26,7 @@ class Configuration
         ]);
     }
 
-    public static function start()
-    {
+    public static function start() {
         $config = self::readConfig();
         $loader = new \Phalcon\Loader();
         $loader->registerDirs([
@@ -40,6 +38,6 @@ class Configuration
             APP_PATH . $config->application->cacheDir,
             APP_PATH . $config->application->viewsDir
         ])->register();
-        return $loader;
     }
+
 }
