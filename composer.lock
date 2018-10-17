@@ -14,8 +14,7 @@
     "prefer-lowest": false,
     "platform": {
         "php": "^7.1",
-        "ext-phalcon": "*",
-		"acpu" : "*"
+        "ext-phalcon": "*"
     },
     "platform-dev": []
 }
