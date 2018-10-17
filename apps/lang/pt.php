@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 $lang = [
-    "titulo" => "Gestão Oteleira",
+    "titulo" => "Iron",
     "login.title" => "Acesso",
     "login.label.username" => "Utilizador",
     "login.label.password" => "Password",
