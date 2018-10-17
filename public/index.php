@@ -26,7 +26,9 @@ try {
     $application->setDI($di);
     echo $application->handle()->getContent();
 } catch (Phalcon\Exception $e) {
-    echo $e->getMessage();
+    var_dump($e);
+    $e->getMessage();
 } catch (PDOException $e) {
-    echo $e->getMessage();
+    var_dump($e);
+    $e->getMessage();
 }
