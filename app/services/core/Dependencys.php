@@ -2,7 +2,20 @@
 
 namespace Iron\Services\Core;
 
+use app\helpers\SecurityHelper;
+use app\services\session\SessionService;
+use app\services\TranslatorService;
+use Phalcon\Db\Adapter\Pdo\Mysql;
 use Phalcon\Di;
+use Phalcon\Http\Request;
+use Phalcon\Http\Response;
+use Phalcon\Mvc\Dispatcher as MvcDispatcher;
+use Phalcon\Mvc\Model\Manager as ModelManager;
+use Phalcon\Mvc\Model\Metadata\Memory as ModelMetadata;
+use Phalcon\Mvc\Router;
+use Phalcon\Mvc\Url;
+use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Engine\Volt;
 
 class Dependencys extends Di
 {
