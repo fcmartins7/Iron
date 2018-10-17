@@ -1,8 +1,8 @@
 {
   "require": {
-      "php": "^7.1.0",
-      "ext-phalcon": "*"
-	  "apcu":"*"
+      "php": "^7.1",
+      "ext-phalcon": "*",
+      "acpu" : "*"
   },
     "config": {
       "secure-http": false
