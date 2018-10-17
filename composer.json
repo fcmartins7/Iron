@@ -4,15 +4,6 @@
         "ext-phalcon": "*"
     },
     "config": {
-        "vendor-dir": "app/libraries",
         "secure-http": false
-    },
-    "autoload": {
-        "psr-4": {
-            "Iron\\Services\\": "app/services",
-            "Iron\\Services\\App\\": "app/services/app",
-            "Iron\\Config\\": "app/config",
-            "Iron\\Services\\Translation\\": "app/services/translation"
-        }
     }
 }
