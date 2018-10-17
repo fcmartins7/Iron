@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL);
+
 define('APP_PATH', realpath('..') . '/');
 
 use Phalcon\Mvc\Application,

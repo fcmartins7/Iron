@@ -37,7 +37,15 @@ class Configuration {
             APP_PATH . $config->application->helpersDir,
             APP_PATH . $config->application->cacheDir,
             APP_PATH . $config->application->viewsDir
-        ])->register();
+        ]);
+        $loader->registerNamespaces([
+            'Iron\Services\Translation' => APP_PATH.'app/services/translation',
+            'Iron\Services\App' =>  APP_PATH.'app/services/app',
+            'Iron\Services' =>  APP_PATH.'app/services',
+            'Iron\Service\Session' =>  APP_PATH.'app/services/session',
+            'Iron\Config' => APP_PATH.'app/config',
+        ]);
+        $loader->register();
     }
 
 }
