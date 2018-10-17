@@ -1,25 +1,24 @@
 <?php
-/*
- * Copyright 2018, 
- * Francisco Martins    <francisco_jcm_7@hotmail.com>,
- * José Pereira         <fofurna@gmail.com>
- * Bruno Barbosa        <bmanecas@hotmail.com>  
- * All Rights Reserved.
- */
 
 use Phalcon\Config;
 
-$config = new Config(
+return new Config(
     [
-    'directories' =>
-    [
-        'property' => 1,
-        'property2' => 'yeah',
-    ],
-    'namespaces' =>
-    [
-        'property' => 1,
-        'property2' => 'yeah',
-    ]
+        "database" => [
+            "adapter"     => "Mysql",
+            "host"        => "localhost",
+            "username"    => "root",
+            "password"    => "",
+            "dbname"      => "test",
+        ],
+        "application" => [
+            "controllersDir" => __DIR__ . "/../../app/controllers/",
+            "modelsDir"      => __DIR__ . "/../../app/models/",
+            "viewsDir"       => __DIR__ . "/../../app/views/",
+            "pluginsDir"     => __DIR__ . "/../../app/plugins/",
+            "libraryDir"     => __DIR__ . "/../../app/library/",
+            "cacheDir"       => __DIR__ . "/../../app/cache/",
+            "baseUri"        => "/mvc/simple-volt/",
+        ],
     ]
 );
