@@ -10,7 +10,10 @@ $loader = new Loader();
 $loader->registerDirs(
     [
         $config->application->controllersDir,
-        $config->application->modelsDir,
+        $config->application->viewsDir,
+        $config->application->pluginsDir,
+        $config->application->cacheDir,
+        $config->application->baseUri,
     ]
 );
 
