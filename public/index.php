@@ -1,36 +1,35 @@
 <?php
 
-use Phalcon\Di;
-use Phalcon\Loader;
-use Phalcon\Mvc\Application;
-use Phalcon\Mvc\View;
-use Phalcon\Mvc\Router;
-use Phalcon\Http\Request;
-use Phalcon\Http\Response;
-use Phalcon\Mvc\Dispatcher as MvcDispatcher;
-use Phalcon\Mvc\View\Engine\Volt;
-use Phalcon\Mvc\Model\Manager as ModelManager;
-use Phalcon\Mvc\Model\Metadata\Memory as ModelMetadata;
-use Phalcon\Mvc\Url;
-use Phalcon\Db\Adapter\Pdo\Mysql;
-
+use app\helpers\SecurityHelper;
 use app\services\session\SessionService;
 use app\services\TranslatorService;
-use app\helpers\SecurityHelper;
+use Phalcon\Db\Adapter\Pdo\Mysql;
+use Phalcon\Di;
+use Phalcon\Http\Request;
+use Phalcon\Http\Response;
+use Phalcon\Loader;
+use Phalcon\Mvc\Application;
+use Phalcon\Mvc\Dispatcher as MvcDispatcher;
+use Phalcon\Mvc\Model\Manager as ModelManager;
+use Phalcon\Mvc\Model\Metadata\Memory as ModelMetadata;
+use Phalcon\Mvc\Router;
+use Phalcon\Mvc\Url;
+use Phalcon\Mvc\View;
+use Phalcon\Mvc\View\Engine\Volt;
 
 $loader = new Loader();
 $loader->registerDirs(
-        [
-            "../apps/controllers/",
-            "../apps/models/",
-            "../apps/helpers/"
-        ]
+    [
+        "../apps/controllers/",
+        "../apps/models/",
+        "../apps/helpers/",
+    ]
 )->registerNamespaces(
-        [
-            "app\helper" => "../apps/helpers/",
-            "app\services\session" => "../apps/services",
-            "app\services" => "../apps/services"
-        ]
+    [
+        "app\helper" => "../apps/helpers/",
+        "app\services\session" => "../apps/services",
+        "app\services" => "../apps/services",
+    ]
 )->register();
 
 $di = new Di();
@@ -40,63 +39,63 @@ $di->set("dispatcher", MvcDispatcher::class);
 $di->set("response", Response::class);
 $di->set("request", Request::class);
 $di->set(
-        "voltService", function ($view, $di) {
-    $volt = new Volt($view, $di);
+    "voltService", function ($view, $di) {
+        $volt = new Volt($view, $di);
 
-    $volt->setOptions(
+        $volt->setOptions(
             [
                 "compiledPath" => "../apps/cache/",
                 "compiledExtension" => ".compiled",
                 "compiledSeparator" => "_",
-                'compileAlways' => true
+                'compileAlways' => true,
             ]
-    );
+        );
 
-    return $volt;
-});
+        return $volt;
+    });
 $di->set(
-        "view", function () {
-    $view = new View();
+    "view", function () {
+        $view = new View();
 
-    $view->setViewsDir("../apps/views/");
-    $view->registerEngines(
+        $view->setViewsDir("../apps/views/");
+        $view->registerEngines(
             [
                 ".volt" => "voltService",
             ]
-    );
-    return $view;
-}
+        );
+        return $view;
+    }
 );
 $di->set(
-        "session", function () {
-    return new SessionService($this, [
-        "host" => "eu-cdbr-west-02.cleardb.net",
-        "username" => "baecf296ef14dd",
-        "password" => "065fb7b9",
-        "dbname" => "heroku_97aca66527a4246",
-            ]
-    );
-},true
+    "session", function () {
+        return new SessionService($this, [
+            "host" => "eu-cdbr-west-02.cleardb.net",
+            "username" => "baecf296ef14dd",
+            "password" => "065fb7b9",
+            "dbname" => "heroku_97aca66527a4246",
+        ]
+        );
+    }, true
 );
 $di->set(
-        "db", function () {
-    return new Mysql(
+    "db", function () {
+        return new Mysql(
             [
-        "host" => "eu-cdbr-west-02.cleardb.net",
-        "username" => "baecf296ef14dd",
-        "password" => "065fb7b9",
-        "dbname" => "heroku_97aca66527a4246",
+                "host" => "eu-cdbr-west-02.cleardb.net",
+                "username" => "baecf296ef14dd",
+                "password" => "065fb7b9",
+                "dbname" => "heroku_97aca66527a4246",
             ]
-    );
-}
+        );
+    }
 );
 $di->set(
-        "tradutor", function () {
-    return new TranslatorService();
-}, true);
+    "tradutor", function () {
+        return new TranslatorService();
+    }, true);
 $di->set("modelsMetadata", ModelMetadata::class);
 $di->set("modelsManager", ModelManager::class);
-$di->set("crypt", function () { return new SecurityHelper(); });
+$di->set("crypt", function () {return new SecurityHelper();});
 
 try {
     $application = new Application($di);
