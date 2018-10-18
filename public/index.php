@@ -12,7 +12,7 @@ $loader->registerDirs(
         "../app/controllers/",
         "../app/models/",
         "../app/helpers/",
-    ]
+    ]   
 )->registerNamespaces(
     [
         "app\helper" => "../app/helpers/",
