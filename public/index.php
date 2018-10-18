@@ -4,6 +4,8 @@ use Phalcon\Loader;
 use Iron\Services\Core\Dependencys;
 use Phalcon\Mvc\Application;
 
+error_log(E_ALL);
+
 $loader = new Loader();
 $loader->registerDirs(
     [

@@ -13,9 +13,9 @@ class SecurityHelper
     /**
      * Gera hash de ums password string.
      * 
-     * @param string $_pwdToEncrypt - Password
+     * @param   string      $_pwdToEncrypt  Password
      * 
-     * @return Encrypted Hash String
+     * @return  Encrypted Hash String
      */
     public function encryptPassword($_pwdToEncrypt)
     {
@@ -25,9 +25,9 @@ class SecurityHelper
     /**
      * Valida se a password é igual á hash
      * 
-     * @param type $password    - Password
-     * @param type $hash        - Hash de encryptação
-     * @return boolean          - Resultado  
+     * @param   type        $password       Password
+     * @param   type        $hash           Hash de encryptação
+     * @return  boolean     Resultado  
      */
     public function passwordVerify($password, $hash)
     {

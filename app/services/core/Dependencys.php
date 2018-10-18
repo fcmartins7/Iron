@@ -20,10 +20,18 @@ use Phalcon\Mvc\View\Engine\Volt;
 class Dependencys extends Di
 {
 
-    public function __constructor()
+    public function __construct()
     {
-        parent::__constructor();
-        $this->set("router", Router::class);
+        parent::__construct();
+        $this->set("router", function(){
+            $router = new Router();
+            $router->add('/', [
+                'controller' => 'Homepage',
+                'action' => 'show'
+            ]);
+            $router->handle();
+            return $router;
+        });
         $this->set("url", Url::class);
         $this->set("dispatcher", MvcDispatcher::class);
         $this->set("response", Response::class);
@@ -34,7 +42,7 @@ class Dependencys extends Di
 
                 $volt->setOptions(
                     [
-                        "compiledPath" => "../apps/cache/",
+                        "compiledPath" => "../app/cache/",
                         "compiledExtension" => ".compiled",
                         "compiledSeparator" => "_",
                         'compileAlways' => true,
@@ -47,7 +55,7 @@ class Dependencys extends Di
             "view", function () {
                 $view = new View();
 
-                $view->setViewsDir("../apps/views/");
+                $view->setViewsDir("../app/views/");
                 $view->registerEngines(
                     [
                         ".volt" => "voltService",
@@ -56,29 +64,29 @@ class Dependencys extends Di
                 return $view;
             }
         );
-        $this->set(
-            "session", function () {
-                return new SessionService($this, [
-                    "host" => "eu-cdbr-west-02.cleardb.net",
-                    "username" => "baecf296ef14dd",
-                    "password" => "065fb7b9",
-                    "dbname" => "heroku_97aca66527a4246",
-                ]
-                );
-            }, true
-        );
-        $this->set(
-            "db", function () {
-                return new Mysql(
-                    [
-                        "host" => "eu-cdbr-west-02.cleardb.net",
-                        "username" => "baecf296ef14dd",
-                        "password" => "065fb7b9",
-                        "dbname" => "heroku_97aca66527a4246",
-                    ]
-                );
-            }
-        );
+//        $this->set(
+//            "session", function () {
+//                return new SessionService($this, [
+//                    "host" => "eu-cdbr-west-02.cleardb.net",
+//                    "username" => "baecf296ef14dd",
+//                    "password" => "065fb7b9",
+//                    "dbname" => "heroku_97aca66527a4246",
+//                ]
+//                );
+//            }, true
+//        );
+//        $this->set(
+//            "db", function () {
+//                return new Mysql(
+//                    [
+//                        "host" => "eu-cdbr-west-02.cleardb.net",
+//                        "username" => "baecf296ef14dd",
+//                        "password" => "065fb7b9",
+//                        "dbname" => "heroku_97aca66527a4246",
+//                    ]
+//                );
+//            }
+//        );
         $this->set(
             "tradutor", function () {
                 return new TranslatorService();

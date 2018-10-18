@@ -38,14 +38,14 @@ class TranslatorService {
         // Ask browser what is the best language
         $language = explode(',', $_SERVER['HTTP_ACCEPT_LANGUAGE']);
         $language = explode('-', $language[0]);
-        $translationFile = '../apps/lang/' . $language[0] . '.php';
+        $translationFile = '../app/lang/' . $language[0] . '.php';
 
         // Check if we have a translation file for that lang
         if (file_exists($translationFile)) {
             require $translationFile;
         } else {
             // Fallback to some default
-            require "../apps/lang/en.php";
+            require "../app/lang/en.php";
         }
 
         // Return a translation object
