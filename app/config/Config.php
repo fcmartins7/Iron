@@ -7,7 +7,6 @@
  */
 
 use \Phalcon\Config;
-use Phalcon\Loader;
 
 /**
  * Application dependency injector.
@@ -27,11 +26,3 @@ $configuration = new Config([
         "../app/helpers/",
     ]]
 );
-
-$appLoader = new Loader();
-
-$appLoader->registerDirs(
-        $configuration->folders
-)->registerNamespaces(
-        $configuration->namespaces
-)->register();
