@@ -1,5 +1,7 @@
 <?php
 
+error_log(E_ALL);
+
 use Iron\Services\Core\Dependencys;
 use Phalcon\Mvc\Application;
 
