@@ -64,13 +64,14 @@ class Dependencys extends Di
                 return $view;
             }
         );
+        mysql://bbb8e5cd884b58:7434f814@eu-cdbr-west-02.cleardb.net/heroku_e754c9222cc4114?reconnect=true
 //        $this->set(
 //            "session", function () {
 //                return new SessionService($this, [
 //                    "host" => "eu-cdbr-west-02.cleardb.net",
-//                    "username" => "baecf296ef14dd",
-//                    "password" => "065fb7b9",
-//                    "dbname" => "heroku_97aca66527a4246",
+//                    "username" => "bbb8e5cd884b58",
+//                    "password" => "7434f814",
+//                    "dbname" => "heroku_e754c9222cc4114",
 //                ]
 //                );
 //            }, true
@@ -79,10 +80,10 @@ class Dependencys extends Di
 //            "db", function () {
 //                return new Mysql(
 //                    [
-//                        "host" => "eu-cdbr-west-02.cleardb.net",
-//                        "username" => "baecf296ef14dd",
-//                        "password" => "065fb7b9",
-//                        "dbname" => "heroku_97aca66527a4246",
+//                    "host" => "eu-cdbr-west-02.cleardb.net",
+//                    "username" => "bbb8e5cd884b58",
+//                    "password" => "7434f814",
+//                    "dbname" => "heroku_e754c9222cc4114",
 //                    ]
 //                );
 //            }
