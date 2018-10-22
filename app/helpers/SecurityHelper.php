@@ -1,5 +1,5 @@
 <?php
-namespace app\helpers;
+namespace Iron\Helpers;
 
 /**
  * Helper de encryptações
@@ -17,7 +17,7 @@ class SecurityHelper
      * 
      * @return  Encrypted Hash String
      */
-    public function encryptPassword($_pwdToEncrypt)
+    public static function encryptPassword($_pwdToEncrypt)
     {
         return password_hash(md5(base64_encode($_pwdToEncrypt)), PASSWORD_DEFAULT);
     }
@@ -29,7 +29,7 @@ class SecurityHelper
      * @param   type        $hash           Hash de encryptação
      * @return  boolean     Resultado  
      */
-    public function passwordVerify($password, $hash)
+    public static function passwordVerify($password, $hash)
     {
         $_login = md5(base64_encode($password));
         return password_verify($_login, $hash);
