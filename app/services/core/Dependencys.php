@@ -64,30 +64,18 @@ class Dependencys extends Di
                 return $view;
             }
         );
-        mysql://bbb8e5cd884b58:7434f814@eu-cdbr-west-02.cleardb.net/heroku_e754c9222cc4114?reconnect=true
-//        $this->set(
-//            "session", function () {
-//                return new SessionService($this, [
-//                    "host" => "eu-cdbr-west-02.cleardb.net",
-//                    "username" => "bbb8e5cd884b58",
-//                    "password" => "7434f814",
-//                    "dbname" => "heroku_e754c9222cc4114",
-//                ]
-//                );
-//            }, true
-//        );
-//        $this->set(
-//            "db", function () {
-//                return new Mysql(
-//                    [
-//                    "host" => "eu-cdbr-west-02.cleardb.net",
-//                    "username" => "bbb8e5cd884b58",
-//                    "password" => "7434f814",
-//                    "dbname" => "heroku_e754c9222cc4114",
-//                    ]
-//                );
-//            }
-//        );
+        $this->set(
+            "db", function () {
+                return new Mysql(
+                    [
+                    "host" => "eu-cdbr-west-02.cleardb.net",
+                    "username" => "bbb8e5cd884b58",
+                    "password" => "7434f814",
+                    "dbname" => "heroku_e754c9222cc4114",
+                    ]
+                );
+            }
+        );
         $this->set(
             "tradutor", function () {
                 return new TranslatorService();
