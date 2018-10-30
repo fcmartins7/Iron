@@ -31,7 +31,10 @@ $lang = [
     "list.col.name" => "Nome",
     "list.col.price" => "Preço",
     "list.col.category" => "Categoria",
-        "list.col.id" => "Código",
+    "list.col.id" => "Código",
     "base.btn.category" => "Gerir categorias",
-    "add.label.category" => "Lista de categorias"
+    "add.label.category" => "Lista de categorias",
+    /* New */
+    "sessioncontroller.dologinaction.ok" => "Utilizador autênticado com "
+    . "sucesso!"
 ];

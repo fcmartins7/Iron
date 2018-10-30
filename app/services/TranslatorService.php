@@ -6,7 +6,7 @@
  * and open the template in the editor.
  */
 
-namespace app\services;
+namespace Iron\Services;
 
 use Phalcon\Translate\Adapter\NativeArray;
 
@@ -66,7 +66,8 @@ class TranslatorService {
      * @return string          : Texto para apresentação na label
      */
     public function get($_query) {
-        return $this->_textos->_($_query) != NULL ? $this->_textos->_($_query) : '';
+        return $this->_textos->_(strtolower($_query)) != NULL ?
+                $this->_textos->_(strtolower($_query)) : '';
     }
 
 }

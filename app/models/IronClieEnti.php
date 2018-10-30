@@ -11,7 +11,7 @@ use Iron\Helpers\SecurityHelper;
  * @author      Francisco Martins   <francisco_jcm_7@hotmail.com>
  * @version     000.000.001         @10/09/2018
  */
-class IronClieEnti extends Model {
+class IronClieEnti extends Model implements \JsonSerializable {
 
     /**
      * Entity id;
@@ -34,10 +34,28 @@ class IronClieEnti extends Model {
      */
     private $PAS;
 
-    public function __construct($user, $password) {
-        $this->USR = $user;
-        $this->PAS = SecurityHelper::encryptPassword($password);
-        return $this;
+    /**
+     * Returns table name mapped in the model.
+     *
+     * @return string
+     */
+    public function getSource() {
+        return 'iron_clie_enti';
+    }
+
+    function __construct($USR, $PAS) {
+        $this->USR = $USR;
+        $this->PAS = SecurityHelper::encryptPassword($PAS);
+    }
+
+    /**
+     * Validates if the user is been registered on the Data Base.
+     * 
+     * @return boolean If TRUE the users is already set on the Data Base. If 
+     *                 FALSE the system couldn't found the user on Data Base.
+     */
+    public function isRegisted() {
+        
     }
 
     function getID() {
@@ -62,6 +80,15 @@ class IronClieEnti extends Model {
 
     function setPAS($PAS) {
         $this->PAS = $PAS;
+    }
+
+    /**
+     * Especifica os dados a serem serializador no json_encode
+     * @link http://php.net/manual/en/function.get-object-vars.php
+     * @return Array(object)
+     */
+    public function jsonSerialize() {
+        return (object) get_object_vars($this);
     }
 
 }
